@@ -1,3 +1,4 @@
+const currentSong = new Audio();
 async function main(){
     let base_url = "http://127.0.0.1:5500/Spotify%20clone/assets/songs/";
     let response = await fetch("http://127.0.0.1:5500/Spotify%20clone/assets/songs.json");
@@ -10,14 +11,48 @@ async function main(){
     });
     return music;
 }
+const playMusic = (track)=>{
+    currentSong.src = track;
+    currentSong.play();
+    play.src = "assets/logos/pause.svg";
+}
+
 async function displaySongs() {
     let music = await main();  // Wait for main() to finish
     let SongUl = document.querySelector(".songsList ul");
 
-    music.forEach(mu => {
+    //Show all the songs in playlist
+
+    music.forEach((mu, index)=> {
         let songName = cleanSongName(mu.split('/').pop());  // Clean the song name
-        SongUl.innerHTML += `<li>${songName}</li>`;
+        SongUl.innerHTML += ` <li data-index="${index}">
+                            <img class="invert"src="assets/logos/music.svg" alt="">
+                            <div class="info">
+                                <div>${songName}</div>
+                            </div>
+                            <div class="music_play">
+                                <img class="invert"src="assets/logos/play.svg" alt="">
+                            </div>
+                        </li>`;
     });
+    //attach an event listener to each song
+    document.querySelectorAll(".songsList li").forEach((element) => {
+        element.addEventListener("click", (e) => {
+            let index = element.getAttribute("data-index");  // Get song index
+            playMusic(music[index]);   // Play using full song URL
+        });
+    });
+
+    //attach an event listener to play, previous and next
+    play.addEventListener("click", e =>{
+        if(currentSong.paused){
+            currentSong.play()
+            play.src = 'assets/logos/pause.svg'
+        }else{
+            currentSong.pause()
+            play.src = 'assets/logos/play.svg'
+        }
+    })
 }
 
 function cleanSongName(rawName) {

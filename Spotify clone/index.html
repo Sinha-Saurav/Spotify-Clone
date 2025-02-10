@@ -7,6 +7,8 @@
     <title>Spotify -Web Player: Music for Everyone</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utility.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -30,16 +32,7 @@
                 </div>
                 <div class="songsList">
                     <ul>
-                        <li>
-                            <img class="invert"src="assets/logos/music.svg" alt="">
-                            <div class="info">
-                                <div>Song Name</div>
-                                <div>Song Artist</div>
-                            </div>
-                            <div class="music_play">
-                                <img class="invert"src="assets/logos/play.svg" alt="">
-                            </div>
-                        </li>
+                       
                     </ul>
                 </div>
                 <div class="footer">
@@ -98,13 +91,17 @@
                     
                 </div>
                 <div class="playbar">
+                    <div class="seekbar">
+                        <div class="circle">
+                        </div>
+                    </div>
                     <div class="songinfo">
 
                     </div>
                     <div class="playbar_buttons">
-                        <img src="assets/logos/previous.svg" alt="">
-                        <img src="assets/logos/play.svg" alt="">
-                        <img src="assets/logos/next.svg" alt="">
+                        <img id="previous" src="assets/logos/previous.svg" alt="">
+                        <img id="play" src="assets/logos/play.svg" alt="">
+                        <img id="next" src="assets/logos/next.svg" alt="">
                     </div>
                     <div class="songtime">
                         
