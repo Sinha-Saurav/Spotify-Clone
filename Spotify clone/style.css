@@ -149,7 +149,7 @@ button{
 .playbar{
     position: absolute;
     bottom:0;
-    width:100%;
+    width:95%;
     padding:10px;
     background-color: rgb(5, 254, 113);
 }
@@ -161,4 +161,30 @@ button{
     display: flex;
     justify-content: center;
     gap:12px;
+}
+
+.songsList{
+    height: 350px;
+    overflow-y:hidden;
+}
+.songsList ul{
+    padding: 0 15px;
+}
+.songsList ul li{
+    list-style-type:none;
+    display: flex;
+    padding: 12px;
+    gap: 34px;
+    cursor: pointer;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+.songsList ul li img{
+    width:20px;
+    height: 20px;
+}
+.music_play{
+    margin-left: 63px;
 }
