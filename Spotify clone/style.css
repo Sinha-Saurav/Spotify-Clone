@@ -15,6 +15,11 @@ body{
     width: 25vw;
     padding: 5px;
 }
+.logo{
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+}
 
 .right{
     width: 75vw;
@@ -27,6 +32,7 @@ body{
     list-style: none;
     padding-top: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 .heading{
     display: flex;
@@ -195,21 +201,41 @@ button{
 }
 
 .seekbar{
-    background-color: white;
+    background-color: rgba(2, 2, 2,0.4);
     width: 98%;
-    height: 2px;
+    height: 3px;
     position: absolute;
     bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.progress{
+    height: 100%;
+    width: 0%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #1DB954;
+    transition: left 0.1s linear;
 }
 .circle{
     height: 10px;
     width: 10px;
     border-radius: 50%;
-    background-color: white;
+    background-color: #1DB954;
     position: relative;
     bottom: 4px;
-    transition: left 0.5s;
+    transition: left 0.1s linear;
 }
 .playbar_buttons img{
     cursor: pointer;
+}
+
+.songbar{
+    display: flex;
+    justify-content: space-between;
+}
+.songinfo, .songtime{
+    padding:0 10px;
 }
