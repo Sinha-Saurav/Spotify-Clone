@@ -1,21 +1,23 @@
 const currentSong = new Audio();
+let music;
 async function main(){
     let base_url = "http://127.0.0.1:5500/Spotify%20clone/assets/songs/";
     let response = await fetch("http://127.0.0.1:5500/Spotify%20clone/assets/songs.json");
     let data = await response.json();
     let songs = data.songs;
-    let music = []
+    music = []
     songs.forEach(song => {
         let url = base_url+song;
         music.push(url)
     });
     return music;
 }
-const playMusic = (track , song)=>{
+const playMusic = (track)=>{
     currentSong.src = track;
+    const songName = cleanSongName(track.split('/').pop());
     currentSong.play();
     play.src = "assets/logos/pause.svg";
-    document.querySelector(".songinfo").innerHTML = song;
+    document.querySelector(".songinfo").innerHTML = songName;
 }
 
 async function displaySongs() {
@@ -23,6 +25,10 @@ async function displaySongs() {
     let SongUl = document.querySelector(".songsList ul");
 
     function secondsToMinutes(time){
+        if(isNaN(time) || time<0){
+            return "00:00";
+        }
+
         let min = Math.floor(time/60);
         let sec = Math.floor(time % 60);
 
@@ -65,8 +71,7 @@ async function displaySongs() {
     document.querySelectorAll(".songsList li").forEach((element) => {
         element.addEventListener("click", (e) => {
             let index = element.getAttribute("data-index");  // Get song index
-            let songName = element.getAttribute("data-songname");  // Get song naem without url
-            playMusic(music[index],songName);   // Play using full song URL
+            playMusic(music[index]);   // Play using full song URL
         });
     });
 
@@ -92,6 +97,32 @@ async function displaySongs() {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width)*100
         document.querySelector(".circle").style.left = percent + "%";
         currentSong.currentTime = (currentSong.duration * percent)/100;
+    })
+    //add event listener to hamburger
+    document.querySelector(".hamburger").addEventListener("click", ()=>{
+        document.querySelector(".left").style.left = 0 +"%";
+    })
+    //add event listener to cancel button
+    document.querySelector(".close").addEventListener("click", ()=>{
+        document.querySelector(".left").style.left = -120 +"%";
+    })
+    //add event listener to previous button
+    previous.addEventListener("click", ()=>{
+        let index = music.indexOf(currentSong.src)
+        if((index-1)>=0){
+            playMusic(music[index-1])
+        }
+    })
+    //add event listener to next button
+    next.addEventListener("click", ()=>{
+        let index = music.indexOf(currentSong.src)
+        if((index+1) < music.length){
+            playMusic(music[index+1])
+        }
+    })
+    //add event listener to volume range 
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
+        currentSong.volume = e.target.value/100;
     })
 }
 
