@@ -280,11 +280,11 @@ button{
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 12px;
 }
 .range input[type="range"]{
     height: 3px;
+    cursor: pointer;
 }
 
 @media (max-width:1250px){
