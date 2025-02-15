@@ -1,7 +1,7 @@
 const currentSong = new Audio();
 let currentPlaylist = [];
 async function main(folder){
-    let base_url = `http://127.0.0.1:5500/Spotify%20clone/assets/songs/${folder}/`;
+    let base_url = `http://127.0.0.1:5500/docs/assets/songs/${folder}/`;
     let response = await fetch(`${base_url}songs.json`);
     let data = await response.json();
     let songs = data.songs;
@@ -15,7 +15,7 @@ async function main(folder){
 
 }
 async function albums(){
-    let base_url = `http://127.0.0.1:5500/Spotify%20clone/assets/songs/`;
+    let base_url = `http://127.0.0.1:5500/docs/assets/songs/`;
     let response = await fetch(`${base_url}folder.json`);
     let data = await response.json();
     let folders = data.folder;
